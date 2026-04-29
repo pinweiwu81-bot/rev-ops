@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevOps Control Center</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>RevOps Control Center</h2>
+        <nav>
+            <a href="#" class="nav-link active" data-tab="sanitizer">Data Sanitizer</a>
+            <a href="#" class="nav-link" data-tab="health">Health Scorer</a>
+            <a href="#" class="nav-link" data-tab="generator">Workflow Generator</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="container">
+
+            <!-- TOOL 1: DATA SANITIZER -->
+            <div id="sanitizer" class="tab-content active">
+                <h1>CRM Data Sanitizer</h1>
+                <div class="card">
+                    <h3>Raw Data Input</h3>
+                    <p class="mb-20">Paste your messy Excel/CSV data here. Auto-detects delimiters.</p>
+                    <label for="rawInput" class="hidden">Raw Data Input</label>
+                    <textarea id="rawInput" rows="10"
+                        placeholder="Google , 2024/02/01 , 100000&#10;Amazon,  2024/03/15, 50000" class="form-control"
+                        title="Raw Data Input"></textarea>
+                    <button class="btn" onclick="sanitizeData()">Sanitize & Preview</button>
+                </div>
+                <div id="sanitizerResults" class="hidden">
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Cleaned Data Preview</h3>
+                            <button class="btn btn-success" onclick="copyMarkdownTable()">Copy as Markdown
+                                Table</button>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="previewTable"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOOL 2: HEALTH SCORER -->
+            <div id="health" class="tab-content">
+                <h1>Customer Health Scorer</h1>
+                <div class="card">
+                    <h3>Input Customer Data</h3>
+                    <p class="mb-20">Paste JSON data array or edit the default below.</p>
+                    <label for="jsonInput" class="hidden">Customer JSON Data</label>
+                    <textarea id="jsonInput" rows="10" title="Customer JSON Data" placeholder="Enter JSON Array here..."
+                        class="form-control">[
+    {
+        "name": "Acme Corp",
+        "frequency": 120,
+        "tickets": 5,
+        "daysRemaining": 200
+    },
+    {
+        "name": "Beta Inc",
+        "frequency": 40,
+        "tickets": 25,
+        "daysRemaining": 45
+    },
+    {
+        "name": "Gamma LLC",
+        "frequency": 10,
+        "tickets": 15,
+        "daysRemaining": 15
+    }
+]</textarea>
+                    <button class="btn" onclick="analyzeHealth()">Analyze Health</button>
+                </div>
+                <div id="healthResults" class="hidden">
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Health Analysis</h3>
+                            <button class="btn btn-success" onclick="copyHealthMarkdown()">Copy Health Report
+                                (MD)</button>
+                        </div>
+                        <div id="healthDashboard" class="dashboard-grid mt-20"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOOL 3: WORKFLOW GENERATOR -->
+            <div id="generator" class="tab-content">
+                <h1>Workflow Generator</h1>
+                <div class="card">
+                    <h3>Client Details</h3>
+                    <div class="mt-20">
+                        <label for="customerName" class="form-label">Customer Name:</label>
+                        <input type="text" id="customerName" placeholder="e.g. Acme Corp" class="form-control"
+                            title="Customer Name">
+
+                        <label for="industry" class="form-label">Industry:</label>
+                        <select id="industry" class="form-control" title="Industry">
+                            <option value="SaaS">SaaS</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label for="plan" class="form-label">Plan Tier:</label>
+                        <select id="plan" class="form-control" title="Plan Tier">
+                            <option value="Standard">Standard</option>
+                            <option value="Enterprise">Enterprise</option>
+                        </select>
+
+                        <button class="btn" onclick="generateWorkflow()">Generate Workflow</button>
+                    </div>
+                </div>
+                <div id="generatorResults" class="hidden">
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Generated Onboarding Plan</h3>
+                            <button class="btn btn-success" onclick="copyWorkflowMarkdown()">Copy to Notion
+                                (MD)</button>
+                        </div>
+                        <pre id="workflowOutput" class="pre-output"></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+[
+    {
+        "name": "HighValue Corp",
+        "frequency": 200,
+        "tickets": 2,
+        "daysRemaining": 300
+    },
+    {
+        "name": "Struggling Startup",
+        "frequency": 20,
+        "tickets": 15,
+        "daysRemaining": 45
+    },
+    {
+        "name": "Churn Risk Ltd",
+        "frequency": 5,
+        "tickets": 10,
+        "daysRemaining": 10
+    }
+]
